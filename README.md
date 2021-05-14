@@ -1,4 +1,4 @@
-# USJT-A3 - Organização do projeto 💻📚
+# USJT-A3 - Imuniza Fácil 💻📚
 
 ### Sobre o projeto: 
 
