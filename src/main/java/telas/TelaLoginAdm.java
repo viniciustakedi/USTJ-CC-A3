@@ -9,12 +9,12 @@ package telas;
  *
  * @author Thiago
  */
-public class TelaLogin extends javax.swing.JFrame {
+public class TelaLoginAdm extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin() {
+    public TelaLoginAdm() {
         initComponents();
     }
 
@@ -137,7 +137,7 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                new TelaLoginAdm().setVisible(true);
             }
         });
     }

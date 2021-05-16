@@ -13,13 +13,14 @@ public class ConexaoBD {
     private String host = "localhost";
     private String porta = "3306";
     private String bd = "projetoimuniza";
+    
 
     public Connection conexao() {
         try {
-            Connection c = DriverManager.getConnection(
+            Connection con = DriverManager.getConnection(
                     "jdbc:mysql://" + host + ":" + porta + "/" + bd, usuario,senha );
             System.out.println("Conexao ok");
-            return c;
+            return con;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro de conexão com banco de dados" + ex);
             ex.printStackTrace();

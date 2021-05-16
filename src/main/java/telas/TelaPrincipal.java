@@ -32,12 +32,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelTelaPrincipal = new javax.swing.JPanel();
+        jLabelPacientesCad = new javax.swing.JLabel();
+        jLabelAdminCad = new javax.swing.JLabel();
+        jLabelFilaVacina = new javax.swing.JLabel();
+        jLabelRelatorios = new javax.swing.JLabel();
+        jButtonadminIcon = new javax.swing.JButton();
+        jButtonPacienteIcon = new javax.swing.JButton();
+        jLabelAtendeteCad = new javax.swing.JLabel();
+        jButtonAtedenteIcon = new javax.swing.JButton();
+        jButtonAgendaIcon = new javax.swing.JButton();
+        jButtonRelatorioIcon = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
         fundoTelaPrincipal = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuInicio = new javax.swing.JMenu();
         jMenuItemInicio = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuCadastro = new javax.swing.JMenu();
+        jMenuItemCadPaciente = new javax.swing.JMenuItem();
+        jMenuItemCadAtend = new javax.swing.JMenuItem();
+        jMenuItemCadAdm = new javax.swing.JMenuItem();
         jMenuAgenda = new javax.swing.JMenu();
         jMenuRelatorio = new javax.swing.JMenu();
         jMenuAjuda = new javax.swing.JMenu();
@@ -52,6 +66,65 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanelTelaPrincipal.setLayout(null);
+
+        jLabelPacientesCad.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        jLabelPacientesCad.setText("Cadastrar Pacientes");
+        jPanelTelaPrincipal.add(jLabelPacientesCad);
+        jLabelPacientesCad.setBounds(190, 240, 140, 15);
+
+        jLabelAdminCad.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        jLabelAdminCad.setText("Cadastrar Administrador");
+        jPanelTelaPrincipal.add(jLabelAdminCad);
+        jLabelAdminCad.setBounds(10, 240, 170, 16);
+
+        jLabelFilaVacina.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        jLabelFilaVacina.setText("Fila De Vacinação");
+        jPanelTelaPrincipal.add(jLabelFilaVacina);
+        jLabelFilaVacina.setBounds(530, 240, 130, 15);
+
+        jLabelRelatorios.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        jLabelRelatorios.setText("Relatórios");
+        jPanelTelaPrincipal.add(jLabelRelatorios);
+        jLabelRelatorios.setBounds(690, 240, 80, 14);
+
+        jButtonadminIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thiago\\Desktop\\img proj\\admin+.png")); // NOI18N
+        jPanelTelaPrincipal.add(jButtonadminIcon);
+        jButtonadminIcon.setBounds(40, 130, 100, 110);
+
+        jButtonPacienteIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thiago\\Desktop\\img proj\\cadPaciente.png")); // NOI18N
+        jButtonPacienteIcon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPacienteIconActionPerformed(evt);
+            }
+        });
+        jPanelTelaPrincipal.add(jButtonPacienteIcon);
+        jButtonPacienteIcon.setBounds(210, 130, 90, 110);
+
+        jLabelAtendeteCad.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        jLabelAtendeteCad.setText("Cadastrar Atendente");
+        jPanelTelaPrincipal.add(jLabelAtendeteCad);
+        jLabelAtendeteCad.setBounds(360, 240, 150, 15);
+
+        jButtonAtedenteIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thiago\\Desktop\\img proj\\CadMedicos.png")); // NOI18N
+        jPanelTelaPrincipal.add(jButtonAtedenteIcon);
+        jButtonAtedenteIcon.setBounds(380, 130, 100, 110);
+
+        jButtonAgendaIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thiago\\Desktop\\img proj\\Agenda.png")); // NOI18N
+        jPanelTelaPrincipal.add(jButtonAgendaIcon);
+        jButtonAgendaIcon.setBounds(530, 130, 110, 110);
+
+        jButtonRelatorioIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thiago\\Desktop\\img proj\\relatorioicon.png")); // NOI18N
+        jPanelTelaPrincipal.add(jButtonRelatorioIcon);
+        jButtonRelatorioIcon.setBounds(670, 130, 100, 110);
+
+        jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thiago\\Desktop\\img proj\\exit.png")); // NOI18N
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
+        jPanelTelaPrincipal.add(jButtonSair);
+        jButtonSair.setBounds(713, 329, 40, 40);
 
         fundoTelaPrincipal.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thiago\\Desktop\\img proj\\fundo_tela_principal2.jpg")); // NOI18N
         jPanelTelaPrincipal.add(fundoTelaPrincipal);
@@ -82,6 +155,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuInicio);
 
         jMenuCadastro.setText("Cadastro");
+
+        jMenuItemCadPaciente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItemCadPaciente.setText("Paciente");
+        jMenuItemCadPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadPacienteActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuItemCadPaciente);
+
+        jMenuItemCadAtend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItemCadAtend.setText("Atentende");
+        jMenuCadastro.add(jMenuItemCadAtend);
+
+        jMenuItemCadAdm.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItemCadAdm.setText("Administrador");
+        jMenuItemCadAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadAdmActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuItemCadAdm);
+
         jMenuBar1.add(jMenuCadastro);
 
         jMenuAgenda.setText("Agenda");
@@ -93,6 +189,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuAjuda.setText("Ajuda");
 
         jMenuItem3.setText("Ajuda");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenuAjuda.add(jMenuItem3);
 
         jMenuItem4.setText("Sobre");
@@ -118,6 +219,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_jMenuItemInicioActionPerformed
+
+    private void jMenuItemCadAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadAdmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemCadAdmActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItemCadPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadPacienteActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroPacient cadPaciente = new TelaCadastroPacient();
+        cadPaciente.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItemCadPacienteActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jButtonPacienteIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPacienteIconActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroPacient cadPaciente = new TelaCadastroPacient();
+        cadPaciente.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonPacienteIconActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +284,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fundoTelaPrincipal;
+    private javax.swing.JButton jButtonAgendaIcon;
+    private javax.swing.JButton jButtonAtedenteIcon;
+    private javax.swing.JButton jButtonPacienteIcon;
+    private javax.swing.JButton jButtonRelatorioIcon;
+    private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonadminIcon;
+    private javax.swing.JLabel jLabelAdminCad;
+    private javax.swing.JLabel jLabelAtendeteCad;
+    private javax.swing.JLabel jLabelFilaVacina;
+    private javax.swing.JLabel jLabelPacientesCad;
+    private javax.swing.JLabel jLabelRelatorios;
     private javax.swing.JMenu jMenuAgenda;
     private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBar1;
@@ -163,6 +302,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuInicio;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItemCadAdm;
+    private javax.swing.JMenuItem jMenuItemCadAtend;
+    private javax.swing.JMenuItem jMenuItemCadPaciente;
     private javax.swing.JMenuItem jMenuItemInicio;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuRelatorio;
