@@ -26,7 +26,7 @@ public class Adm {
      */
     public boolean verificaLogin() {
 
-        String sql = "SELECT login, senha FROM tb_cadastro WHERE tipo = 'administrador'";
+        String sql = "SELECT login, senha FROM tb_funcionario WHERE tipo = 'administrador'";
 
         ConexaoBD factory = new ConexaoBD();
 
