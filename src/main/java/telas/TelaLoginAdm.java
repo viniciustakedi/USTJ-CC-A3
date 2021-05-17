@@ -5,6 +5,9 @@
  */
 package telas;
 
+import banco.Adm;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Thiago
@@ -102,9 +105,24 @@ public class TelaLoginAdm extends javax.swing.JFrame {
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         // TODO add your handling code here:
-        TelaPrincipal telaprincipal = new TelaPrincipal();
-        telaprincipal.setVisible(true);
-        dispose();
+
+        try {
+            String login = jTextFieldLogin.getText();
+            String senha = String.valueOf(jPasswordFieldSenha.getPassword());
+
+            Adm loginAdm = new Adm(login, senha);
+
+            if (loginAdm.verificaLogin() == true) {
+                //Trocar para a tela principal e fechar essa
+                TelaPrincipal telaprincipal = new TelaPrincipal();
+                telaprincipal.setVisible(true);
+                dispose();
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     /**
@@ -124,13 +142,13 @@ public class TelaLoginAdm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLoginAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLoginAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLoginAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLoginAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
