@@ -5,7 +5,8 @@
  */
 package telas;
 
-import banco.Adm;
+import banco.Administrador;
+import banco.AdministradorDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -110,17 +111,25 @@ public class TelaLoginAdm extends javax.swing.JFrame {
             String login = jTextFieldLogin.getText();
             String senha = String.valueOf(jPasswordFieldSenha.getPassword());
 
-            Adm loginAdm = new Adm(login, senha);
+            Administrador administrador = new Administrador(login, senha);
 
-            if (loginAdm.verificaLogin() == true) {
+            AdministradorDAO admDAO = new AdministradorDAO();
+
+            if (admDAO.verificaLoginADM(administrador) == true) {
+                JOptionPane.showMessageDialog(null, "Login realizado com sucesso",
+                        "Imuniza Facil", JOptionPane.INFORMATION_MESSAGE);
                 //Trocar para a tela principal e fechar essa
                 TelaPrincipal telaprincipal = new TelaPrincipal();
                 telaprincipal.setVisible(true);
                 dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Login e/ou senha incorretos",
+                        "Imuniza Facil", JOptionPane.WARNING_MESSAGE);
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Conexao nao realizada",
+                    "Imuniza Facil", JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_jButtonEntrarActionPerformed
