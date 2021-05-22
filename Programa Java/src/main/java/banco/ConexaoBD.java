@@ -8,14 +8,14 @@ import javax.swing.JOptionPane;
 
 public class ConexaoBD {
 
-    private String usuario = "root";
-    private String senha = "Nirvana@36";
-    private String host = "localhost";
-    private String porta = "3306";
-    private String bd = "projetoimuniza";
+    private static String usuario = "root";
+    private static String senha = "Nirvana@36";
+    private static String host = "localhost";
+    private static String porta = "3306";
+    private static String bd = "projetoimuniza";
     
 
-    public Connection conexao() {
+    public static Connection conexao() {
         try {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://" + host + ":" + porta + "/" + bd, usuario,senha );

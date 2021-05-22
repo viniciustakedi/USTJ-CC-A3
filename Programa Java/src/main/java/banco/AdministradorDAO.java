@@ -17,9 +17,7 @@ public class AdministradorDAO {
 
         String sql = "SELECT ?, ? FROM tb_ usuario WHERE idTipoUsuario = 1";
 
-        ConexaoBD factory = new ConexaoBD();
-
-        try (Connection con = factory.conexao()) {
+        try (Connection con = ConexaoBD.conexao()) {
             PreparedStatement pst = con.prepareStatement(sql);
 
             pst.setString(1, administrador.getLogin());
@@ -38,6 +36,28 @@ public class AdministradorDAO {
             ex.printStackTrace();
             return false;
         }
+    }
+    
+    /**
+     * Metodo para deletar o cadastro de um admnistrador.
+     * @param administrador 
+     */
+    
+    public void deletarAdministrador(Administrador administrador){
+        
+        String sql = "DELETE FROM tb_usuario WHERE codigo = ? AND idTipoUsuario = 1";
+        
+        try (Connection con = ConexaoBD.conexao()) {
+            PreparedStatement pst = con.prepareStatement(sql);
+            
+            pst.setInt(1, administrador.getCodigo());
+            
+            pst.execute();                      
+            
+        }catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        
     }
 
 }

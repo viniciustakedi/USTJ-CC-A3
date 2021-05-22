@@ -1,4 +1,3 @@
-
 package banco;
 
 import java.sql.Connection;
@@ -6,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class AtendenteDAO {
-     /**
+
+    /**
      * Metodo para verificar se o login/senha estao corretos.
      *
      * @param atendente
@@ -37,5 +37,27 @@ public class AtendenteDAO {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * Metodo para deletar o cadastro de um atendente.
+     *
+     * @param atendente
+     */
+    public void deletarAtendente(Administrador atendente) {
+
+        String sql = "DELETE FROM tb_usuario WHERE codigo = ? AND idTipoUsuario = 2";
+
+        try (Connection con = ConexaoBD.conexao()) {
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setInt(1, atendente.getCodigo());
+
+            pst.execute();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 }
