@@ -7,20 +7,19 @@ package telas;
 
 import banco.ConexaoBD;
 import banco.Paciente;
+import banco.PacienteDAO;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Thiago
  */
 public class TelaCadastroPacient extends javax.swing.JFrame {
 
-  Paciente paciente = new Paciente ();
-    ConexaoBD conectar = new ConexaoBD();
-    
-    
     public TelaCadastroPacient() {
         initComponents();
     }
@@ -136,23 +135,35 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-        
-        paciente.setNome(jTextFieldNome.getText());
-        paciente.setSobrenome(jTextFieldSobreNome.getText());
-        paciente.setIdade(Integer.parseInt(jTextFieldIdade.getText()));
-        paciente.setAreaSaude((String) jComboBoxSimNao.getSelectedItem());
-        paciente.Salvar();
-        
+
+        String nome = jTextFieldNome.getText();
+        String sobrenome = jTextFieldSobreNome.getText();
+        int idade = Integer.parseInt(jTextFieldIdade.getText());
+        String areaSaude = (String) jComboBoxSimNao.getSelectedItem();
+
+        Paciente paciente = new Paciente(nome, sobrenome, idade, areaSaude);
+
+        PacienteDAO pacienteDAO = new PacienteDAO();
+
+        try {
+            pacienteDAO.inserirPacientes(paciente);
+            JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso",
+                    "Imuniza Facil", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Conexao nao realizada",
+                    "Imuniza Facil", JOptionPane.WARNING_MESSAGE);
+        }
+
         jTextFieldNome.setText("");
         jTextFieldSobreNome.setText("");
         jTextFieldIdade.setText("");
-        
-        
+
+
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jComboBoxSimNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSimNaoActionPerformed
         // TODO add your handling code here:
-          
+
     }//GEN-LAST:event_jComboBoxSimNaoActionPerformed
 
     /**
