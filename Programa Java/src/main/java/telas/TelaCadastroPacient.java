@@ -37,10 +37,10 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
         jPanelCadastro = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
-        jLabelSobrenome = new javax.swing.JLabel();
+        jLabelEndereco = new javax.swing.JLabel();
         jLabelIdade = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
-        jTextFieldSobreNome = new javax.swing.JTextField();
+        jTextFieldEndereco = new javax.swing.JTextField();
         jTextFieldIdade = new javax.swing.JTextField();
         jLabelSaude = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
@@ -53,9 +53,7 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
         jLabel6.setText("jLabel6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(700, 450));
         setMinimumSize(new java.awt.Dimension(700, 450));
-        setPreferredSize(new java.awt.Dimension(700, 450));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -71,10 +69,10 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
         jPanelCadastro.add(jLabelNome);
         jLabelNome.setBounds(330, 40, 50, 15);
 
-        jLabelSobrenome.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
-        jLabelSobrenome.setText("SOBRENOME:");
-        jPanelCadastro.add(jLabelSobrenome);
-        jLabelSobrenome.setBounds(290, 70, 90, 15);
+        jLabelEndereco.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        jLabelEndereco.setText("ENDEREÇO:");
+        jPanelCadastro.add(jLabelEndereco);
+        jLabelEndereco.setBounds(300, 80, 90, 15);
 
         jLabelIdade.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jLabelIdade.setText("IDADE: ");
@@ -82,8 +80,8 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
         jLabelIdade.setBounds(320, 110, 50, 20);
         jPanelCadastro.add(jTextFieldNome);
         jTextFieldNome.setBounds(380, 30, 200, 30);
-        jPanelCadastro.add(jTextFieldSobreNome);
-        jTextFieldSobreNome.setBounds(380, 70, 200, 30);
+        jPanelCadastro.add(jTextFieldEndereco);
+        jTextFieldEndereco.setBounds(380, 70, 200, 30);
         jPanelCadastro.add(jTextFieldIdade);
         jTextFieldIdade.setBounds(380, 110, 80, 30);
 
@@ -121,8 +119,6 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
         });
         jPanelCadastro.add(jComboBoxSimNao);
         jComboBoxSimNao.setBounds(380, 150, 70, 20);
-
-        FundoTelacadastro.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thiago\\Desktop\\img proj\\fundo_tela_principal2.jpg")); // NOI18N
         jPanelCadastro.add(FundoTelacadastro);
         FundoTelacadastro.setBounds(0, 0, 660, 450);
 
@@ -137,11 +133,11 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String nome = jTextFieldNome.getText();
-        String sobrenome = jTextFieldSobreNome.getText();
+        String endereco = jTextFieldEndereco.getText();
         int idade = Integer.parseInt(jTextFieldIdade.getText());
         String areaSaude = (String) jComboBoxSimNao.getSelectedItem();
 
-        Paciente paciente = new Paciente(nome, sobrenome, idade, areaSaude);
+        Paciente paciente = new Paciente(nome, endereco, idade, areaSaude);
 
         PacienteDAO pacienteDAO = new PacienteDAO();
 
@@ -155,7 +151,7 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
         }
 
         jTextFieldNome.setText("");
-        jTextFieldSobreNome.setText("");
+        jTextFieldEndereco.setText("");
         jTextFieldIdade.setText("");
 
 
@@ -209,14 +205,14 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBoxSimNao;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelEndereco;
     private javax.swing.JLabel jLabelIdade;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelSaude;
-    private javax.swing.JLabel jLabelSobrenome;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelCadastro;
+    private javax.swing.JTextField jTextFieldEndereco;
     private javax.swing.JTextField jTextFieldIdade;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldSobreNome;
     // End of variables declaration//GEN-END:variables
 }
