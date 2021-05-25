@@ -14,7 +14,7 @@ public class AtendenteDAO {
      */
     public boolean verificaLoginAtendente(Atendente atendente) {
 
-        String sql = "SELECT ?, ? FROM tb_ usuario WHERE idTipoUsuario = 2";
+        String sql = "SELECT login = ?, senha = ? FROM tb_usuario WHERE idTipoUsuario = 2";
 
         ConexaoBD factory = new ConexaoBD();
 
@@ -40,7 +40,7 @@ public class AtendenteDAO {
     }
 
     /**
-     * Metodo para deletar o cadastro de um atendente.
+     * Metodo para deletar o cadastro do atendente.
      *
      * @param atendente
      */
@@ -57,6 +57,87 @@ public class AtendenteDAO {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Metodo para atualizar o cadastro do atendente.
+     *
+     * @param atendente
+     */
+    public void atualizarAtendente(Atendente atendente) {
+        String sql = "UPDATE tb_usuario SET nome = ?, sobrenome = ?,"
+                + " email = ?, cargo = ?, login = ?, senha = ?, cpf = ? "
+                + " WHERE codigo = ? AND idTipoUsuario = 2";
+
+        try (Connection con = ConexaoBD.conexao()) {
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setString(1, atendente.getNome());
+            pst.setString(2, atendente.getSobrenome());
+            pst.setString(3, atendente.getEmail());
+            pst.setString(4, atendente.getCargo());
+            pst.setString(5, atendente.getLogin());
+            pst.setString(6, atendente.getSenha());
+            pst.setString(7, atendente.getCpf());
+            pst.setInt(8, atendente.getCodigo());
+
+            pst.execute();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para consultar os cadastros de atendentes.
+     *
+     * @param atendente
+     */
+    public void consultaAtendente(Atendente atendente) {
+
+        String sql = "SELECT * FROM tb_usuario WHERE codigo = ? and idTipoUsuario = 2";
+
+        try (Connection con = ConexaoBD.conexao()) {
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setInt(1, atendente.getCodigo());
+            //Executar o comando e receber o resultado, armazenando num ResultSet
+            ResultSet rs = pst.executeQuery();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inserir cadastro de atendentes.
+     *
+     * @param atendente
+     */
+    public void inserirAtendentes(Atendente atendente) {
+
+        String sql = "INSERT INTO tb_usuario(nome, sobrenome, email, cargo, login, senha, cpf) "
+                + "VALUES (?,?,?,?,?,?,?)";
+
+        try (Connection con = ConexaoBD.conexao()) {
+
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setString(1, atendente.getNome());
+            pst.setString(2, atendente.getSobrenome());
+            pst.setString(3, atendente.getEmail());
+            pst.setString(4, atendente.getCargo());
+            pst.setString(5, atendente.getLogin());
+            pst.setString(6, atendente.getSenha());
+            pst.setString(7, atendente.getCpf());
+            pst.setInt(8, atendente.getCodigo());
+
+            pst.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
         }
 
     }
