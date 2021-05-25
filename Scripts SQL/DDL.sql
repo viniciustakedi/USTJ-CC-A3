@@ -2,9 +2,9 @@ CREATE DATABASE db_imunizafacil;
 USE db_imunizafacil;
 
 #DDL
-CREATE TABLE tb_tipousuario (
+CREATE TABLE tb_cargo (
 	id 		INT NOT NULL AUTO_INCREMENT,
-    titulo 	VARCHAR(155),
+    cargo	VARCHAR(155),
     PRIMARY KEY(id)
 )ENGINE = innodb;
 
@@ -15,19 +15,26 @@ CREATE TABLE tb_vacinado (
     responsavel_relatorio	VARCHAR(255)
 )ENGINE = innodb;
 
+CREATE TABLE tb_paciente (
+    nome 			VARCHAR(255),
+	endereco		VARCHAR(155),
+    area_saude		BOOLEAN,
+	idade			INT,
+	id_vacinado		INT,
+	FOREIGN KEY(id_vacinado)	REFERENCES tb_vacinado(id)
+);
+
 CREATE TABLE tb_usuario (
 	id				INT NOT NULL AUTO_INCREMENT,
     nome 			VARCHAR(255),
+	cpf				VARCHAR(255),	
+	email			VARCHAR(255),	
+    login			VARCHAR(255),
     senha			VARCHAR(255),
-    email			VARCHAR(255),
-    estado			VARCHAR(155),
     data_nascimento VARCHAR(155),
-    area_saude		BOOLEAN,
-    id_tipousuario	INT,
-    id_vacinado		INT,
+    id_cargo		INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(id_tipousuario) REFERENCES tb_tipousuario(id),
-    FOREIGN KEY(id_vacinado)	REFERENCES tb_vacinado(id)
+    FOREIGN KEY(id_cargo) REFERENCES tb_cargo(id)
 );
 
 #DML
