@@ -5,7 +5,7 @@ public class Paciente {
 
     private int codigo;
     private String nome;
-    private String sobrenome;
+    private String endereco;
     private int idade;
     private String areaSaude;
     
@@ -13,9 +13,9 @@ public class Paciente {
         
     }
 
-    public Paciente(String nome, String sobrenome, int idade, String areaSaude) {
+    public Paciente(String nome, String endereco, int idade, String areaSaude) {
         this.nome = nome;
-        this.sobrenome = sobrenome;
+        this.endereco = endereco;
         this.idade = idade;
         this.areaSaude = areaSaude;
         
@@ -29,8 +29,8 @@ public class Paciente {
         return nome;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getEndereco() {
+        return endereco;
     }
 
     public int getIdade() {
@@ -45,8 +45,8 @@ public class Paciente {
         this.nome = nome;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public void setIdade(int idade) {
