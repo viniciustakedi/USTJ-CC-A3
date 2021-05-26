@@ -100,14 +100,29 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
         jButtonSalvar.setBounds(20, 40, 70, 23);
 
         jButtonExcluir.setText("Excuir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
         jPanelCadastro.add(jButtonExcluir);
         jButtonExcluir.setBounds(20, 160, 70, 23);
 
         jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
         jPanelCadastro.add(jButtonEditar);
         jButtonEditar.setBounds(20, 120, 70, 23);
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
         jPanelCadastro.add(jButtonBuscar);
         jButtonBuscar.setBounds(20, 80, 70, 23);
 
@@ -130,18 +145,18 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        // TODO add your handling code here:
-
-        String nome = jTextFieldNome.getText();
-        String endereco = jTextFieldEndereco.getText();
-        int idade = Integer.parseInt(jTextFieldIdade.getText());
-        String areaSaude = (String) jComboBoxSimNao.getSelectedItem();
-
-        Paciente paciente = new Paciente(nome, endereco, idade, areaSaude);
-
-        PacienteDAO pacienteDAO = new PacienteDAO();
 
         try {
+
+            String nome = jTextFieldNome.getText().trim();
+            String endereco = jTextFieldEndereco.getText().trim();
+            int idade = Integer.parseInt(jTextFieldIdade.getText().trim());
+            String area_saude = (String) jComboBoxSimNao.getSelectedItem();
+
+            Paciente paciente = new Paciente(nome, endereco, idade, area_saude);
+
+            PacienteDAO pacienteDAO = new PacienteDAO();
+
             pacienteDAO.inserirPacientes(paciente);
             JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso",
                     "Imuniza Facil", JOptionPane.INFORMATION_MESSAGE);
@@ -162,6 +177,87 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBoxSimNaoActionPerformed
 
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+
+        try {
+
+            int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "Insira o codigo para buscar o paciente",
+                    "Imuniza Facil", JOptionPane.INFORMATION_MESSAGE));
+
+            Paciente paciente = new Paciente(codigo);
+
+            PacienteDAO pacienteDAO = new PacienteDAO();
+
+            if (pacienteDAO.verificaCodigo(paciente) == true) {
+                pacienteDAO.consultaPaciente(paciente);
+            } else {
+                JOptionPane.showMessageDialog(null, "Codigo invalido",
+                        "Imuniza Facil", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+
+        try {
+
+            int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "Insira o codigo para excluir o paciente",
+                    "Imuniza Facil", JOptionPane.INFORMATION_MESSAGE));
+
+            Paciente paciente = new Paciente(codigo);
+
+            PacienteDAO pacienteDAO = new PacienteDAO();
+
+            if (pacienteDAO.verificaCodigo(paciente) == true) {
+                pacienteDAO.deletarPaciente(paciente);
+                JOptionPane.showMessageDialog(null, "Funcionario deletado",
+                        "Imuniza Facil", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Codigo invalido",
+                        "Imuniza Facil", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        try {
+
+            String nome = jTextFieldNome.getText().trim();
+            String endereco = jTextFieldEndereco.getText().trim();
+            int idade = Integer.parseInt(jTextFieldIdade.getText().trim());
+            String area_saude = (String) jComboBoxSimNao.getSelectedItem();
+
+            int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "Insira o codigo para alterar o cadastro do paciente",
+                    "Imuniza Facil", JOptionPane.INFORMATION_MESSAGE));
+
+            Paciente paciente = new Paciente(codigo, nome, endereco, idade, area_saude);
+
+            PacienteDAO pacienteDAO = new PacienteDAO();
+
+            if (pacienteDAO.verificaCodigo(paciente) == true) {
+                pacienteDAO.atualizarPaciente(paciente);
+                JOptionPane.showMessageDialog(null, "Funcionario alterado",
+                        "Imuniza Facil", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Codigo invalido",
+                        "Imuniza Facil", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        jTextFieldNome.setText("");
+        jTextFieldEndereco.setText("");
+        jTextFieldIdade.setText("");
+
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -179,13 +275,17 @@ public class TelaCadastroPacient extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroPacient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroPacient.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroPacient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroPacient.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroPacient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroPacient.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroPacient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroPacient.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
