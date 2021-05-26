@@ -3,6 +3,9 @@ package banco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 public class PacienteDAO {
 
@@ -13,7 +16,7 @@ public class PacienteDAO {
      */
     public void inserirPacientes(Paciente paciente) {
 
-        String sql = "INSERT INTO tb_paciente(nome, endereco, idade, areaSaude) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO tb_paciente(nome, endereco, idade, area_saude) VALUES (?,?,?,?)";
 
         try (Connection con = ConexaoBD.conexao()) {
             PreparedStatement pst = con.prepareStatement(sql);
@@ -35,9 +38,9 @@ public class PacienteDAO {
      *
      * @param paciente
      */
-    public void deletarAdministrador(Paciente paciente) {
+    public void deletarPaciente(Paciente paciente) {
 
-        String sql = "DELETE FROM tb_paciente WHERE codigo = ? AND idTipoUsuario = 3";
+        String sql = "DELETE FROM tb_paciente WHERE id_vacinado = ?";
 
         try (Connection con = ConexaoBD.conexao()) {
             PreparedStatement pst = con.prepareStatement(sql);
@@ -57,10 +60,10 @@ public class PacienteDAO {
      *
      * @param paciente
      */
-    public void atualizarAdministrador(Paciente paciente) {
+    public void atualizarPaciente(Paciente paciente) {
         String sql = "UPDATE tb_paciente SET nome = ?, endereco = ?,"
-                + " idade = ?, areaSaude = ?"
-                + " WHERE codigo = ? AND idTipoUsuario = 3";
+                + " idade = ?, area_saude = ?"
+                + " WHERE id_vacinado = ?";
 
         try (Connection con = ConexaoBD.conexao()) {
             PreparedStatement pst = con.prepareStatement(sql);
@@ -72,7 +75,7 @@ public class PacienteDAO {
             pst.setInt(5, paciente.getCodigo());
 
             pst.execute();
-
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -83,20 +86,55 @@ public class PacienteDAO {
      *
      * @param paciente
      */
-    public void consultaAdministrador(Paciente paciente) {
+    public void consultaPaciente(Paciente paciente) {
 
-        String sql = "SELECT * FROM tb_paciente WHERE codigo = ? and idTipoUsuario = 1";
+        String sql = "SELECT * FROM tb_paciente WHERE id_vacinado = ?";
 
         try (Connection con = ConexaoBD.conexao()) {
             PreparedStatement pst = con.prepareStatement(sql);
 
             pst.setInt(1, paciente.getCodigo());
-            //Executar o comando e receber o resultado, armazenando num ResultSet
+
             ResultSet rs = pst.executeQuery();
 
+            while (rs.next()) {
+                paciente.setNome(rs.getString("nome"));
+                paciente.setEndereco(rs.getString("endereco"));
+                paciente.setIdade(rs.getInt("idade"));
+                paciente.setAreaSaude(rs.getString("area_saude"));
+
+                JOptionPane.showMessageDialog(null, "Nome: " + paciente.getNome()
+                        + "\nEndereço: " + paciente.getEndereco()
+                        + "\nIdade: " + paciente.getIdade()
+                        + "\nArea da saude: " + paciente.getAreaSaude());
+
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public boolean verificaCodigo(Paciente paciente) {
+
+        String sql = "SELECT * FROM tb_paciente WHERE id_vacinado = ?";
+
+        try (Connection con = ConexaoBD.conexao()) {
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setInt(1, paciente.getCodigo());
+
+            //Executar o comando e receber o resultado, armazenando num ResultSet
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+
     }
 
     public void visualizarFila(Paciente paciente) {

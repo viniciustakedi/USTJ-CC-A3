@@ -1,4 +1,3 @@
-
 package banco;
 
 public class Paciente {
@@ -8,9 +7,13 @@ public class Paciente {
     private String endereco;
     private int idade;
     private String areaSaude;
-    
+
     public Paciente() {
-        
+
+    }
+
+    public Paciente(int codigo) {
+        this.codigo = codigo;
     }
 
     public Paciente(String nome, String endereco, int idade, String areaSaude) {
@@ -18,7 +21,15 @@ public class Paciente {
         this.endereco = endereco;
         this.idade = idade;
         this.areaSaude = areaSaude;
-        
+
+    }
+
+    public Paciente(int codigo, String nome, String endereco, int idade, String areaSaude) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.idade = idade;
+        this.areaSaude = areaSaude;
     }
 
     public int getCodigo() {
@@ -36,8 +47,8 @@ public class Paciente {
     public int getIdade() {
         return idade;
     }
-    
-    public String getAreaSaude(){
+
+    public String getAreaSaude() {
         return areaSaude;
     }
 
@@ -53,8 +64,13 @@ public class Paciente {
         this.idade = idade;
     }
 
-    public void setAreaSaude(String areaSaude){
+    public void setAreaSaude(String areaSaude) {
         this.areaSaude = areaSaude;
+    }
+
+    @Override
+    public String toString() {
+        return this.nome;
     }
 
 }
