@@ -14,7 +14,7 @@ public class AdministradorDAO {
      */
     public boolean verificaLoginADM(Administrador administrador) {
 
-        String sql = "SELECT login = ?, senha = ? FROM tb_usuario WHERE idTipoUsuario = 1";
+        String sql = "SELECT * FROM tb_usuario WHERE login = ? and senha = ? and id_cargo = 1";
 
         try (Connection con = ConexaoBD.conexao()) {
             PreparedStatement pst = con.prepareStatement(sql);
