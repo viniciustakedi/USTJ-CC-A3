@@ -12,7 +12,8 @@ CREATE TABLE tb_vacinado (
 	id 						INT NOT NULL AUTO_INCREMENT,
     vacinado				BOOLEAN,
     data_vacinacao			VARCHAR(155),
-    responsavel_relatorio	VARCHAR(255)
+    responsavel_relatorio	VARCHAR(255),
+    PRIMARY KEY(id)
 )ENGINE = innodb;
 
 CREATE TABLE tb_paciente (
